@@ -23,8 +23,6 @@ public:
     bool isThreadBlocked() const { return isBlocked; }
     void setBlocked(bool value) { isBlocked = value; }
 
-    //uint64 getTimeSlice() const { return timeSlice; }
-
     using Body = void (*)(void*);	// pokazivac na f-ju koja nema telo ni povratnu vred
 
     static int createRunThread(thread_t*, Body, void*, uint64*);       // pravi nit i zapocinje je odmah
@@ -55,10 +53,9 @@ public:
 
     static void threadWrapper();    // bilo je private
 
-
 private:
 
-    TCB(Body body, void* arg, uint64* stk) :	        // KONSTRUKTOR (ako hoces inicijalizatorske liste stavi : dvotacku)
+    TCB(Body body, void* arg, uint64* stk) :	        // KONSTRUKTOR
             body(body),
             arg(arg),
 
@@ -107,7 +104,6 @@ private:
     static void join(thread_t* handle);
 
     static int exit();  //trenutno izvrsavanu nit gasimo
-
 
 };
 
