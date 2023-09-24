@@ -76,7 +76,6 @@ void Riscv::ecallHandler()
         else if(args[0] == 0x13) {      // thread_dispatch
             TCB::dispatch();
         }
-        // --------------- join() ------------------
         else if(args[0] == 0x14) {
             //thread_t* handle = (thread_t*)args[1];
             thread_t *handle;
@@ -93,10 +92,6 @@ void Riscv::ecallHandler()
 
             *handle = TCB::createThread(startRoutine, arg, stack_space);     // pravimo nit, ali je ne pokrecemo, ona ceka da bude pokrenuta sa .start()
         }
-        //else if(args[0] == 0x16) {      // START: thread_start
-          //  thread_t* handle = (thread_t*)args[1];
-            //ret = (*handle)->start();
-        //}
         // ---------------- 3. ZADATAK: semafori ---------------------
         else if(args[0] == 0x21) {      // sem_open
             // skidamo argumente
@@ -143,7 +138,6 @@ void Riscv::ecallHandler()
         }
 
         // ----------------
-        //__asm__ volatile("mv a0, %0" : : "r" (ret));
         __asm__ volatile("sd %0, 10*8(fp)" : : "r" ((uint64)ret));      // u a0 vracam povratnu vrednost
 
         w_sstatus(sstatus);
