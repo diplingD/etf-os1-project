@@ -29,19 +29,3 @@ int main() {
 
     return 0;
 }
-
-/*
-workerBody{
-    for(){
-        ispis
-        busy wait
-        thread_dispatch
-    }
-    wait++;
-    delete this;
-}
-usermain {
-    new
-    start
-    while(wait != 20) Thread::dispatch();
- */
